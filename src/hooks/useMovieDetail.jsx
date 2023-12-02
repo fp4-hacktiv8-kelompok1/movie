@@ -1,10 +1,10 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-function useMovieSearch(query, pageNumber) {
+function useMovieDetail(id) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
-  const [movies, setMovies] = useState([]);
+  const [detail, setDetail] = useState([]);
 
   useEffect(() => {
     setLoading(true);
@@ -14,23 +14,19 @@ function useMovieSearch(query, pageNumber) {
       url: "https://www.omdbapi.com/",
       params: {
         apikey: "fd8de445",
-        s: query,
-        page: pageNumber,
+        i: id,
       },
     })
       .then((res) => {
-        if (res.data.Response === "False") {
-          setError(true);
-        }
-        setMovies(res.data.Search);
+        setDetail(res.data);
         setLoading(false);
       })
       .catch((e) => {
         setError(true);
       });
-  }, [query, pageNumber]);
+  }, [id]);
 
-  return { loading, error, movies };
+  return { loading, error, detail };
 }
 
-export default useMovieSearch;
+export default useMovieDetail;

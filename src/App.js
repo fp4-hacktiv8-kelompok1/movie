@@ -1,8 +1,8 @@
 import { Route, Routes } from "react-router-dom";
-import Navbar from "./components/Navbar";
 import HomePage from "./pages/HomePage";
-import SearchPage from "./pages/SearchPage";
 import DetailPage from "./pages/DetailPage";
+import Navbar from "./components/Navbar";
+import SearchPage from "./pages/SearchPage";
 
 export default function App() {
   return (
@@ -11,7 +11,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/search/:keyword" element={<SearchPage />} />
-        <Route path="/detail/:imdbID" element={<DetailPage />} />
+        <Route path="/:id" element={<DetailPage />} />
       </Routes>
     </>
   );
