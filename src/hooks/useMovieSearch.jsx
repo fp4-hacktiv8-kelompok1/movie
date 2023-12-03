@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 function useMovieSearch(query, pageNumber) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+  const [totalPage, setTotalPage] = useState(0);
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
@@ -23,6 +24,7 @@ function useMovieSearch(query, pageNumber) {
           setError(true);
         }
         setMovies(res.data.Search);
+        setTotalPage(Math.ceil(res.data.totalResults / 10));
         setLoading(false);
       })
       .catch((e) => {
@@ -30,7 +32,7 @@ function useMovieSearch(query, pageNumber) {
       });
   }, [query, pageNumber]);
 
-  return { loading, error, movies };
+  return { loading, error, movies, totalPage };
 }
 
 export default useMovieSearch;
