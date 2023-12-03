@@ -1,6 +1,8 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import useMovieDetail from "../hooks/useMovieDetail";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from "@fortawesome/free-regular-svg-icons";
 
 function DetailPage() {
   const { id } = useParams();
@@ -8,8 +10,61 @@ function DetailPage() {
 
   return (
     <>
-      <div>{detail.Title}</div>
-      <div>{loading && "loading..."}</div>
+      {loading ? (
+        <p className="flex justify-center items-center text-xl font-bold">
+          Loading...
+        </p>
+      ) : (
+        <div className="w-full h-full bg-white">
+          <div className="container mx-auto my-20">
+            <div className="flex mx-20">
+              <div className="rounded-xl overflow-hidden shadow-2xl shadow-black">
+                <img src={detail.Poster} className="w-full h-full" />
+              </div>
+              <div className="my-5 ml-7">
+                <div className="flex justify-between items-center">
+                  <h1 className="font-bold text-3xl">
+                    {detail.Title} ({detail.Year})
+                  </h1>
+                  <div className="flex gap-2 items-center">
+                    <p className="font-bold text-xl">{detail.imdbRating}</p>
+                    <FontAwesomeIcon
+                      icon={faStar}
+                      style={{ color: "#f1ff33" }}
+                      size="lg"
+                    />
+                  </div>
+                </div>
+                <div className="flex gap-5 my-3 text-slate-500">
+                  <p>{detail.Released}</p>
+                  <p>{detail.Country}</p>
+                  <p>{detail.Runtime}</p>
+                  <p>{detail.Rated}</p>
+                </div>
+                <p className="">{detail.Plot}</p>
+                <div className="mt-5">
+                  <div className="flex my-2">
+                    <p className="mr-5 text-slate-500">Director</p>
+                    <p>{detail.Director}</p>
+                  </div>
+                  <div className="flex my-2">
+                    <p className="mr-8 text-slate-500">Writer</p>
+                    <p>{detail.Writer}</p>
+                  </div>
+                  <div className="flex my-2">
+                    <p className="mr-7 text-slate-500">Actors</p>
+                    <p>{detail.Actors}</p>
+                  </div>
+                  <div className="flex my-2">
+                    <p className="mr-7 text-slate-500">Genre</p>
+                    <p>{detail.Genre}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
       <div>{error && "error..."}</div>
     </>
   );
