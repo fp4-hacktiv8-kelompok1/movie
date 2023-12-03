@@ -16,18 +16,20 @@ function DetailPage() {
         </p>
       ) : (
         <div className="w-full h-full bg-white">
-          <div className="container mx-auto my-20">
-            <div className="flex mx-20">
+          <div className="container mx-auto my-10">
+            <div className="flex flex-col md:flex-row mx-5">
               <div className="rounded-xl overflow-hidden shadow-2xl shadow-black">
                 <img src={detail.Poster} className="w-full h-full" />
               </div>
               <div className="my-5 ml-7">
-                <div className="flex justify-between items-center">
-                  <h1 className="font-bold text-3xl">
+                <div className="flex flex-col md:flex-row mt-4 md:mt-0 justify-between items-center">
+                  <h1 className="font-bold text-2xl md:text-3xl">
                     {detail.Title} ({detail.Year})
                   </h1>
                   <div className="flex gap-2 items-center">
-                    <p className="font-bold text-xl">{detail.imdbRating}</p>
+                    <p className="font-bold text-lg md:text-xl">
+                      {detail.imdbRating}
+                    </p>
                     <FontAwesomeIcon
                       icon={faStar}
                       style={{ color: "#f1ff33" }}
@@ -35,7 +37,7 @@ function DetailPage() {
                     />
                   </div>
                 </div>
-                <div className="flex gap-5 my-3 text-slate-500">
+                <div className="flex gap-4 my-3 text-[11px] md:text-sm text-slate-500">
                   <p>{detail.Released}</p>
                   <p>{detail.Country}</p>
                   <p>{detail.Runtime}</p>
