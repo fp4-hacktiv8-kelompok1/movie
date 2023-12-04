@@ -1,8 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import useMovieDetail from "../hooks/useMovieDetail";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar } from "@fortawesome/free-regular-svg-icons";
+import { FaRegStar } from "react-icons/fa6";
 
 function DetailPage() {
   const { id } = useParams();
@@ -19,7 +18,11 @@ function DetailPage() {
           <div className="container mx-auto my-10">
             <div className="flex flex-col md:flex-row mx-5">
               <div className="rounded-xl overflow-hidden shadow-2xl shadow-black">
-                <img src={detail.Poster} className="w-full h-full" />
+                <img
+                  src={detail.Poster}
+                  className="w-full h-full"
+                  alt={detail.Title}
+                />
               </div>
               <div className="my-5 ml-7">
                 <div className="flex flex-col md:flex-row mt-4 md:mt-0 justify-between items-center">
@@ -30,11 +33,7 @@ function DetailPage() {
                     <p className="font-bold text-lg md:text-xl">
                       {detail.imdbRating}
                     </p>
-                    <FontAwesomeIcon
-                      icon={faStar}
-                      style={{ color: "#f1ff33" }}
-                      size="lg"
-                    />
+                    <FaRegStar style={{ color: "#f1ff33" }} size={'1.5em'}/>
                   </div>
                 </div>
                 <div className="flex gap-4 my-3 text-[11px] md:text-sm text-slate-500">
