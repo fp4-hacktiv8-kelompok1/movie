@@ -2,11 +2,6 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { TERipple } from "tw-elements-react";
 
-const cardImageStyle = {
-  width: "300px",
-  height: "450px",
-};
-
 function Card({ imageUrl, title, type, id, year }) {
   const navigate = useNavigate();
   const handleClick = () => {
@@ -20,8 +15,7 @@ function Card({ imageUrl, title, type, id, year }) {
       <TERipple>
         <div className="relative overflow-hidden bg-cover bg-no-repeat">
           <img
-            className="rounded-t-lg"
-            style={cardImageStyle}
+            className="rounded-t-lg object-cover object-center w-[300px] h-[450px]"
             src={
               imageUrl === "N/A"
                 ? "https://placehold.co/300x450?text=No+image+available"
