@@ -5,7 +5,7 @@ import MovieList from "../components/MovieList";
 function HomePage() {
   const [keyword, setKeyword] = useState("spider man");
   const [pageNumber, setPageNumber] = useState(1);
-  const { movies, loading, error, totalPage } = useMovieSearch(
+  const { loading, error, movies, totalPage } = useMovieSearch(
     keyword,
     pageNumber
   );

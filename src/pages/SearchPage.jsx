@@ -6,7 +6,7 @@ import MovieList from "../components/MovieList";
 function SearchPage() {
   const { keyword } = useParams();
   const [pageNumber, setPageNumber] = useState(1);
-  const { movies, loading, error, totalPage } = useMovieSearch(
+  const { loading, error, movies, totalPage } = useMovieSearch(
     keyword,
     pageNumber
   );
