@@ -1,7 +1,9 @@
 import {  useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function Navbar() {
+  const data = useSelector((state) => state.wishlist.moviesList);
   const [query, setQuery] = useState("");
 
   const navigate = useNavigate();
@@ -23,6 +25,10 @@ function Navbar() {
           className="ml-2 text-xl text-neutral-800 dark:text-neutral-200"
         >
           Movie
+        </Link>
+        <Link 
+          className="text-gray-400 hover:font-bold text-decoration-none"
+          to='/wishlist'>Wishlist ({`${data.length}`})
         </Link>
         <div className="ml-5 flex w-[60%] md:w-[30%]  items-center justify-between">
           <input
