@@ -15,7 +15,7 @@ function Card({ imageUrl, title, type, id, year }) {
       <TERipple>
         <div className="relative overflow-hidden bg-cover bg-no-repeat">
           <img
-            className="rounded-t-lg"
+            className="rounded-t-lg object-cover object-center w-[300px] h-[450px]"
             src={
               imageUrl === "N/A"
                 ? "https://placehold.co/300x450?text=No+image+available"
