@@ -21,7 +21,7 @@ function WishCard({ imageUrl, title, type, id, year }) {const navigate = useNavi
 
     return (
         
-        <div className="mb-10 bg-[#20283E] rounded-md">
+        <div className="mb-10 bg-[#5d73b0] rounded-md">
         <div
       className="block rounded-lg"
       onClick={handleClick}
@@ -34,7 +34,7 @@ function WishCard({ imageUrl, title, type, id, year }) {const navigate = useNavi
               <h5 className="text-blue-400 font-semibold mb-3 text-2xl">{title}</h5>
               <p className="text-lg">Tipe  : {type}</p>
               <p className="text-lg -mt-3">Rilis : {year}</p>
-              <p className="text-lg -mt-3">id : {id}</p>
+              <p className="text-lg -mt-3">Id Imdb : {id}</p>
             </div>
           </div>
           </div>

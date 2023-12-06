@@ -74,6 +74,7 @@ function Card({ imageUrl, title, type, id, year }) {
         className={`${wishlistButtonStyles.base} ${
           isInWishlist ? wishlistButtonStyles.blue : wishlistButtonStyles.transparent
         } ${wishlistButtonStyles.autoMargin}`}
+        style={{ marginLeft: 'auto', marginBottom: 0 }}
       >
         <img src="/assests/bookmark.png" className="w-9 h-8" />
       </button>
