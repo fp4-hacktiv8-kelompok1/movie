@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch,useSelector } from 'react-redux';
 import { TERipple } from 'tw-elements-react';
 import { saveActions } from '../hooks/wishSlice';
+import { BsBookmarkStar } from "react-icons/bs";
 
 const cardImageStyle = {
   width: '300px',
@@ -61,23 +62,22 @@ function Card({ imageUrl, title, type, id, year }) {
           </div>
         </div>
       </TERipple>
-      <div className="p-6" onClick={handleClick}>
-        <h5 className="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50 cursor-pointer w-44">
+      <div className="p-6" >
+        <h5 className="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50 cursor-pointer w-44" onClick={handleClick}>
           {title}
         </h5>
         <span className="inline-block whitespace-nowrap rounded-full bg-primary-100 px-[0.65em] pb-[0.25em] pt-[0.35em] text-center align-baseline text-[0.75em] font-bold leading-none text-primary-700 cursor-pointer">
           {type}
         </span>
+        <BsBookmarkStar
+          onClick={saveUnsavedData}
+          className={`${wishlistButtonStyles.base} ${
+            isInWishlist ? wishlistButtonStyles.blue : wishlistButtonStyles.transparent
+          } ${wishlistButtonStyles.autoMargin}`}
+          style={{ fontSize: '1.6rem', marginLeft: '12px', marginBottom: '2px' }}
+        />
       </div>
-      <button
-        onClick={saveUnsavedData}
-        className={`${wishlistButtonStyles.base} ${
-          isInWishlist ? wishlistButtonStyles.blue : wishlistButtonStyles.transparent
-        } ${wishlistButtonStyles.autoMargin}`}
-        style={{ marginLeft: 'auto', marginBottom: 0 }}
-      >
-        <img src="/assests/bookmark.png" className="w-9 h-8" />
-      </button>
+      
     </div>
   );
 }
