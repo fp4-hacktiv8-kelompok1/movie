@@ -1,19 +1,39 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { TERipple } from "tw-elements-react";
+import { saveActions } from "../store/wishSlice";
+import { FaRegBookmark, FaBookmark } from "react-icons/fa6";
 
 function Card({ imageUrl, title, type, id, year }) {
   const navigate = useNavigate();
   const handleClick = () => {
     navigate(`/${id}`);
   };
+  const data = useSelector((state) => state.wishlist.moviesList);
+
+  const dispatch = useDispatch();
+  const saveUnsavedData = () => {
+    dispatch(
+      saveActions.saveItem({
+        imageUrl,
+        title,
+        type,
+        id,
+        year,
+      })
+    );
+  };
+
+  const isInWishlist = data.some((item) => item.id === id);
+
   return (
-    <div
-      className="block rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700 min-h-full"
-      onClick={handleClick}
-    >
+    <div className="block rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700 min-h-full">
       <TERipple>
-        <div className="relative overflow-hidden bg-cover bg-no-repeat">
+        <div
+          className="relative overflow-hidden bg-cover bg-no-repeat"
+          onClick={handleClick}
+        >
           <img
             className="rounded-t-lg object-cover object-center w-[300px] h-[450px]"
             src={
@@ -33,13 +53,27 @@ function Card({ imageUrl, title, type, id, year }) {
           </div>
         </div>
       </TERipple>
-      <div className="p-6">
-        <h5 className="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50 cursor-pointer w-44">
-          {title}
-        </h5>
-        <span className="inline-block whitespace-nowrap rounded-full bg-primary-100 px-[0.65em] pb-[0.25em] pt-[0.35em] text-center align-baseline text-[0.75em] font-bold leading-none text-primary-700 cursor-pointer">
-          {type}
-        </span>
+      <div className="p-6  flex justify-between">
+        <div>
+          {" "}
+          <h5
+            className="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50 cursor-pointer w-44 "
+            onClick={handleClick}
+          >
+            {title}
+          </h5>
+          <span className="inline-block whitespace-nowrap rounded-full bg-primary-100 px-[0.65em] pb-[0.25em] pt-[0.35em] text-center align-baseline text-[0.75em] font-bold leading-none text-primary-700 cursor-pointer">
+            {type}
+          </span>
+        </div>
+
+        <div onClick={saveUnsavedData}>
+          {isInWishlist ? (
+            <FaBookmark className="text-yellow-500 text-2xl" />
+          ) : (
+            <FaRegBookmark className=" text-2xl" />
+          )}
+        </div>
       </div>
     </div>
   );
