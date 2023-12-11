@@ -4,7 +4,6 @@ import useMovieDetail from "../hooks/useMovieDetail";
 import { FaRegStar } from "react-icons/fa6";
 import useMovieSearch from "../hooks/useMovieSearch";
 import MovieList from "../components/MovieList";
-import Skeleton from "../components/Skeleton";
 
 function DetailPage() {
   const { id } = useParams();
@@ -18,11 +17,7 @@ function DetailPage() {
 
   return (
     <>
-      {loading ? (
-        <div className="container mx-auto gap-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 px-6 mt-6 place-items-center">
-          <Skeleton />
-        </div>
-      ) : (
+      {!loading && (
         <>
           <div className="w-full h-full bg-white">
             <div className="container mx-auto my-10">

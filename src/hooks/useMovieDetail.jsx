@@ -13,6 +13,7 @@ const reducer = (state, action) => {
       return state;
   }
 };
+
 function useMovieDetail(id) {
   const [state, dispatch] = useReducer(reducer, {
     loading: true,

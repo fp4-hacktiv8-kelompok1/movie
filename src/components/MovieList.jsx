@@ -1,12 +1,10 @@
 import React, { useEffect } from "react";
 import Card from "./Card";
-import Skeleton from "./Skeleton";
 import Error from "./Error";
 import Pagination from "./Pagination";
 
 function MovieList({
   movies,
-  loading,
   error,
   keyword,
   pageNumber,
@@ -37,8 +35,6 @@ function MovieList({
               year={movie.Year}
             />
           ))
-        ) : loading ? (
-          <Skeleton />
         ) : null}
       </div>
 
