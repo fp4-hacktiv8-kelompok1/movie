@@ -3,10 +3,10 @@ import { Link, useNavigate } from "react-router-dom";
 
 function Navbar() {
   const [query, setQuery] = useState("");
+  const [inputFocused, setInputFocused] = useState(false);
   const navigate = useNavigate();
 
   const handleSearch = (e) => {
-    e.preventDefault();
     setQuery(e.target.value);
   };
 
@@ -18,25 +18,33 @@ function Navbar() {
     setQuery("");
   };
 
+  const handleFocus = () => {
+    setInputFocused(true);
+  };
+
+  const handleBlur = () => {
+    setInputFocused(false);
+  };
+
   return (
-    <nav className="relative flex w-full flex-wrap items-center justify-center bg-[#0ea5e9] py-4 text-neutral-500 shadow-lg hover:text-neutral-700 focus:text-neutral-700 dark:bg-neutral-600 lg:py-4 sm:px-6">
-      <div className="w-full flex-1 space-x-4 text-center">
-        <Link
-          to="/"
-          className="ml-2 text-xl text-neutral-800 dark:text-neutral-200 font-bold">
-          Movie
+    <nav className={`relative flex w-full flex-wrap items-center justify-between bg-[#2F4F4F] py-4 text-white shadow-lg hover:text-white focus:text-white dark:bg-[#2F4F4F] lg:py-4 sm:px-6`}>
+      <div className="flex items-center space-x-4">
+        <Link to="/">
+          <img src={"/logomoviee.png"} alt="Logo" className="h-16 w-32 object-cover" />
         </Link>
       </div>
-      
-      <div className="w-full sm:w-32 mt-4 sm:mt-0">
+
+      <div className="flex items-center space-x-4">
         <input
           type="search"
-          className="relative block w-full flex-auto rounded border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none motion-reduce:transition-none dark:border-neutral-500 dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:focus:border-primary"
+          className={`relative block flex-auto rounded border border-solid border-white bg-transparent bg-clip-padding px-2 py-[0.25rem] text-base font-normal leading-[1.6] outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:shadow-[inset_0_0_0_1px_rgb(255, 255, 255)] focus:outline-none motion-reduce:transition-none dark:border-white dark:placeholder:text-white dark:focus:border-primary ${inputFocused ? 'text-white' : 'text-white'}`}
           placeholder="Search"
           aria-label="Search"
           aria-describedby="button-addon2"
           onChange={handleSearch}
           value={query}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
           onKeyDown={(e) => {
             if (e.key === "Enter") {
               handleClick();
