@@ -32,9 +32,10 @@ function useMovieSearch(query, pageNumber) {
     const fetchData = async () => {
       dispatch({ type: "FETCH_START" });
       try {
-        const res = await axios.get("https://www.omdbapi.com/", {
+        const res = await axios.get("http://www.omdbapi.com/", {
           params: {
-            apikey: "fd8de445",
+            apikey: "b482db66",
+            //www.omdbapi.com/?i=tt3896198&apikey=b482db66
             s: query,
             page: pageNumber,
           },

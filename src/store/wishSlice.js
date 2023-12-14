@@ -9,9 +9,10 @@ const setItemFunc = (item) => {
 };
 
 const wishSlice = createSlice({
-  name: "wishlist",
+  name: "Movielist",
   initialState,
   reducers: {
+    // saveItem remains here for completeness, but it is not used in this example
     saveItem(state, action) {
       const newData = action.payload;
       const existingData = state.moviesList.find(
@@ -34,7 +35,6 @@ const wishSlice = createSlice({
 
       setItemFunc(state.moviesList.map((item) => item));
     },
-
   },
 });
 
